@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stock Management System</title>
+        <style>
+            .page {
+                display: none;
+            }
+    
+            .page.active {
+                display: block;
+            }
+    
+            .filter-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+    
+            .dropdown-btn {
+                background-color: #0056b3;
+                color: white;
+                padding: 10px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+    
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+    
+            .dropdown-content button {
+                color: black;
+                padding: 10px 20px;
+                text-align: left;
+                text-decoration: none;
+                display: block;
+                width: 100%;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+    
+            .dropdown-content button:hover {
+                background-color: #ddd;
+            }
+    
+            .filter-dropdown:hover .dropdown-content {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Welcome Page -->
+        <div class="page active" id="welcomePage">
+            <header>
+                <h1>Welcome!</h1>
+            </header>
+            <main>
+                <button class="btn" onclick="showPage('adminOptionsPage')">Admin</button>
+                <button class="btn" onclick="showPage('signinUserPage')">User</button>
+            </main>
+        </div>
+    
+        <!-- Admin Options Page -->
+        <div class="page" id="adminOptionsPage">
+            <header>
+                <h1>Admin Options</h1>
+            </header>
+            <main>
+                <button class="btn" onclick="showPage('signinAdminPage')">Sign In</button>
+                <button class="btn" onclick="showPage('signupAdminPage')">Sign Up</button>
+                <button class="btn back-btn" onclick="showPage('welcomePage')">Back</button>
+            </main>
+        </div>
+    
+        <!-- Admin Sign-In Page -->
+        <div class="page" id="signinAdminPage">
+            <header>
+                <h1>Admin Sign In</h1>
+            </header>
+            <form id="signinAdminForm">
+                <label>Email</label>
+                <input type="email" id="adminEmail" required />
+                <label>Password</label>
+                <input type="password" id="adminPassword" required />
+                <button type="submit">Sign In</button>
+            </form>
+            <div>
+                <button id="googleSignIn" class="btn">Sign In with Google</button>
+            </div>
+            <div>
+                <button class="btn" onclick="showPage('forgotPasswordPage')">Forgot Password</button>
+            </div>
+            <button class="btn back-btn" onclick="showPage('adminOptionsPage')">Back</button>
+        </div>
+    
+        <!-- Forgot Password Page -->
+        <div class="page" id="forgotPasswordPage">
+            <header>
+                <h1>Forgot Password</h1>
+            </header>
+            <form id="forgotPasswordForm">
+                <label>Enter your email to reset your password</label>
+                <input type="email" id="forgotEmail" required />
+                <button type="submit">Reset Password</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('signinAdminPage')">Back</button>
+        </div>
+    
+        <!-- Admin Sign-Up Page -->
+        <div class="page" id="signupAdminPage">
+            <header>
+                <h1>Admin Sign Up</h1>
+            </header>
+            <form id="signupAdminForm">
+                <label for="adminName">Name</label>
+                <input type="text" id="adminName" placeholder="Enter your name" required />
+                <label for="adminSignupEmail">Email</label>
+                <input type="email" id="adminSignupEmail" placeholder="Enter your email" required />
+                <label for="adminSignupPassword">Password</label>
+                <input type="password" id="adminSignupPassword" placeholder="Enter your password" required />
+                <label for="adminConfirmPassword">Confirm Password</label>
+                <input type="password" id="adminConfirmPassword" placeholder="Confirm your password" required />
+                <button type="submit">Sign Up</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('adminOptionsPage')">Back</button>
+        </div>
+    
+        <!-- User Sign-In Page -->
+        <div class="page" id="signinUserPage">
+            <header>
+                <h1>User Sign In</h1>
+            </header>
+            <form id="signinUserForm">
+                <label for="userEmail">Email</label>
+                <input type="email" id="userEmail" placeholder="Enter your email" required />
+                <label for="userPassword">Password</label>
+                <input type="password" id="userPassword" placeholder="Enter your password" required />
+                <button type="submit">Sign In</button>
+            </form>
+            <div>
+                <button id="googleSignInUser" class="btn">Sign In with Google</button>
+            </div>
+            <div>
+                <button class="btn" onclick="showPage('forgotUserPasswordPage')">Forgot Password</button>
+            </div>
+            <button class="btn back-btn" onclick="showPage('welcomePage')">Back</button>
+        </div>
+    
+        <!-- Forgot Password Page -->
+        <div class="page" id="forgotUserPasswordPage">
+            <header>
+                <h1>Forgot Password</h1>
+            </header>
+            <form id="forgotUserPasswordForm">
+                <label for="forgotUserEmail">Enter your email to reset your password</label>
+                <input type="email" id="forgotUserEmail" placeholder="Enter your email" required />
+                <button type="submit">Reset Password</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('signinUserPage')">Back</button>
+        </div>
+    
+        <!-- Home Page -->
+        <div class="page" id="homePage">
+            <header>
+                <h1>Home</h1>
+                <button id="notifications" onclick="showPage('notificationsPage')">??</button>
+            </header>
+            <main>
+                <section>
+                    <h2>Stats</h2>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <p>Stock In</p>
+                            <input type="number" id="stockIn" />
+                        </div>
+                        <div class="stat-box">
+                            <p>Stock Out</p>
+                            <input type="number" id="stockOut" />
+                        </div>
+                    </div>
+                </section>
+                <div class="total-box">
+                    <p>Total</p>
+                    <h3 id="totalStock">0</h3>
+                </div>
+                <section class="actions">
+                    <button class="action-btn" onclick="showPage('itemsInPage')">Item In</button>
+                    <button class="action-btn" onclick="showPage('itemsOutPage')">Item Out</button>
+                    <button class="action-btn" onclick="showPage('addNewItemPage')">Add New Item</button>
+                </section>
+                <section>
+                    <div class="list-tile">
+                        <p>Transaction history</p>
+                        <button onclick="showPage('transactionHistoryPage')">-></button>
+                    </div>
+                </section>
+            </main>
+            <footer>
+                <nav>
+                    <button onclick="showPage('itemsPage')">Items</button>
+                    <button onclick="showPage('settingsPage')">Settings</button>
+                    <button onclick="showPage('morePage')">More</button>
+                </nav>
+            </footer>
+        </div>
+    
+       <!-- Notifications Page -->
+    <div class="page" id="notificationsPage">
+        <header>
+            <h1>Notifications</h1>
+        </header>
+        <main>
+            <div id="notificationsContent">
+                <p>No notifications at the moment.</p>
+            </div>
+            <button id="clearNotifications" class="btn">Clear Notifications</button>
+        </main>
+        <footer>
+            <button class="btn back-btn" onclick="showPage('homePage')">Back</button>
+        </footer>
+    </div>
+    
+        <!-- Items Page -->
+        <div class="page" id="itemsPage">
+            <header>
+                <h1>Items</h1>
+                <button class="btn back-btn" onclick="showPage('homePage')">Back</button>
+                <div class="filter-dropdown">
+                    <button class="btn dropdown-btn" id="filterButton">Filter</button>
+                    <div id="filterMenu" class="dropdown-content">
+                        <button onclick="filterItems('Equipment')">Equipment</button>
+                        <button onclick="filterItems('Apparatus')">Apparatus</button>
+                        <button onclick="filterItems('Chemicals')">Chemicals</button>
+                        <button onclick="filterItems('')">Show All</button>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="search-section">
+                    <label for="searchItems">Search Items:</label>
+                    <input type="text" id="searchItems" placeholder="Enter item name" />
+                    <button class="btn" id="searchButton">Search</button>
+                </div>
+                <div id="itemsList">
+                    <p>No items available yet.</p>
+                </div>
+            </main>
+        </div>
+    <!-- Settings Page -->
+    <div class="page" id="settingsPage">
+        <header>
+            <h1>Settings</h1>
+        </header>
+        <main>
+            <button onclick="showPage('profile-page')" class="settings-btn">Profile</button>
+            <button onclick="showPage('account-security-page')" class="settings-btn">Account Security</button>
+            <button onclick="showPage('notification-settings-page')" class="settings-btn">Notification Settings</button>
+        </main>
+        <footer>
+            <button onclick="showPage('homePage')" class="back-btn">Back to Home</button>
+        </footer>
+    </div>
+    
+    <!-- Profile Page -->
+    <div id="profile-page" class="page">
+        <header>
+            <h1>Profile</h1>
+        </header>
+        <main>
+            <label for="profile-pic">Change Profile Picture:</label>
+            <input type="file" id="profile-pic" accept="image/*">
+            <button onclick="showPage('settingsPage')" class="back-btn">Back</button>
+        </main>
+    </div>
+    
+    <!-- Account Security Page -->
+    <div id="account-security-page" class="page">
+        <header>
+            <h1>Account Security</h1>
+        </header>
+        <main>
+            <button onclick="showPage('change-password-page')" class="action-btn">Change Password</button>
+            <button onclick="showPage('settingsPage')" class="back-btn">Back</button>
+        </main>
+    </div>
+    
+    <!-- Change Password Page -->
+    <div id="change-password-page" class="page">
+        <header>
+            <h1>Change Password</h1>
+        </header>
+        <main>
+            <form onsubmit="changePassword(event)">
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" required>
+                <button type="submit">Submit</button>
+            </form>
+            <button onclick="showPage('account-security-page')" class="back-btn">Back</button>
+        </main>
+    </div>
+    
+    <!-- Notification Settings Page -->
+    <div id="notification-settings-page" class="page">
+        <header>
+            <h1>Notification Settings</h1>
+        </header>
+        <main>
+            <button onclick="showPage('user-access-requests-page')" class="action-btn">User Access Requests</button>
+            <button onclick="showPage('security-alerts-page')" class="action-btn">Security Alerts</button>
+            <button onclick="showPage('settingsPage')" class="back-btn">Back</button>
+        </main>
+    </div>
+    
+    <!-- User Access Requests Page -->
+    <div id="user-access-requests-page" class="page">
+        <header>
+            <h1>User Access Requests</h1>
+        </header>
+        <main>
+            <p>No requests at the moment.</p>
+            <button onclick="showPage('notification-settings-page')" class="back-btn">Back</button>
+        </main>
+    </div>
+    
+    <!-- Security Alerts Page -->
+    <div id="security-alerts-page" class="page">
+        <header>
+            <h1>Security Alerts</h1>
+        </header>
+        <main>
+            <p>No alerts at the moment.</p>
+            <button onclick="showPage('notification-settings-page')" class="back-btn">Back</button>
+        </main>
+    </div>
+      <!-- More Page -->
+    <div class="page" id="morePage">
+        <header>
+            <h1>More</h1>
+        </header>
+        <main>
+            <h2>General Settings</h2>
+            <div class="button-group">
+                <button class="btn menu-btn" onclick="showPage('userManagementPage')">User Management</button>
+                <button class="btn menu-btn" onclick="window.open('supplier.pdf', '_blank')">Supplier</button>
+                <button class="btn menu-btn" onclick="window.open('user-manual.pdf', '_blank')">User Manual</button>
+                <button class="btn menu-btn" onclick="window.open('faqs.pdf', '_blank')">FAQs</button>
+                <button class="btn menu-btn" onclick="showPage('signOutPage')">Sign Out</button>
+            </div>
+        </main>
+        <footer>
+            <button class="btn back-btn" onclick="showPage('homePage')">Back to Home</button>
+        </footer>
+    </div>
+    
+    <!-- Sign Out Page -->
+    <div class="page" id="signOutPage">
+        <header>
+            <h1>Sign Out</h1>
+        </header>
+        <main>
+            <p>Are you sure you want to sign out?</p>
+            <button class="btn" onclick="logout()">Okay</button>
+        </main>
+        <footer>
+            <button class="btn back-btn" onclick="showPage('morePage')">Back</button>
+        </footer>
+    </div>
+    
+    <!-- User Management Page -->
+    <div class="page" id="userManagementPage">
+        <header>
+            <h1>Recently Logged In Users</h1>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Signed In</th>
+                        <th>Signed Out</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable">
+                    <!-- Dynamic Data -->
+                </tbody>
+            </table>
+            <button class="btn" onclick="addUser()">Add User</button>
+            <button class="btn back-btn" onclick="showPage('morePage')">Back</button>
+        </main>
+    </div>
+    
+        <!-- Items In Page -->
+        <div class="page" id="itemsInPage">
+            <header>
+                <h1>Item In</h1>
+            </header>
+            <form id="itemsInForm">
+                <label>Item Name</label>
+                <input type="text" id="itemName" required />
+                <label>Category</label>
+                <select id="itemCategory" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Equipment">Equipment</option>
+                    <option value="Apparatus">Apparatus</option>
+                    <option value="Chemicals">Chemicals</option>
+                </select>
+                <label>Quantity</label>
+                <input type="number" id="quantity" required />
+                <button type="submit" class="btn">Add Stock</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('homePage')">Back</button>
+        </div>
+    
+        <!-- Items Out Page -->
+        <div class="page" id="itemsOutPage">
+            <header>
+                <h1>Item Out</h1>
+            </header>
+            <form id="itemsOutForm">
+                <label>Item Name</label>
+                <input type="text" id="itemNameOut" required />
+                <label>Category</label>
+                <select id="itemCategoryOut" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Equipment">Equipment</option>
+                    <option value="Apparatus">Apparatus</option>
+                    <option value="Chemicals">Chemicals</option>
+                </select>
+                <label>Quantity</label>
+                <input type="number" id="quantityOut" required />
+                <button type="submit" class="btn">Remove Stock</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('homePage')">Back</button>
+        </div>
+    
+        <!-- Add New Item Page -->
+        <div class="page" id="addNewItemPage">
+            <header>
+                <h1>Add New Item</h1>
+            </header>
+            <form id="addNewItemForm">
+                <label>Item Name</label>
+                <input type="text" id="newItemName" required />
+                <label>Category</label>
+                <select id="newItemCategory" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="Equipment">Equipment</option>
+                    <option value="Apparatus">Apparatus</option>
+                    <option value="Chemicals">Chemicals</option>
+                </select>
+                <label>Quantity</label>
+                <input type="number" id="newItemQuantity" required />
+                <button type="submit" class="btn">Save Item</button>
+            </form>
+            <button class="btn back-btn" onclick="showPage('homePage')">Back</button>
+        </div>
+    
+        <!-- Transaction History Page -->
+    <div class="page" id="transactionHistoryPage">
+        <header>
+            <h1>Transaction History</h1>
+            <div class="filter-options">
+                <label for="timeFilter">Filter by:</label>
+                <select id="timeFilter" onchange="filterTransactions()">
+                    <option value="all">All</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+            </div>
+            <button onclick="downloadTransactionReport()" class="download-btn">Download Report</button>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Item Name</th>
+                  <th>Action Taken</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-data">
+                <!-- Transactions will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <button onclick="showPage('homePage')">Back</button>
+    </div>
+    
+        <script>
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                const selectedPage = document.getElementById(pageId);
+                if (selectedPage) {
+                    selectedPage.classList.add('active');
+                } else {
+                    console.error(`Page with ID "${pageId}" not found.`);
+                }
+            }
+    
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("signinAdminForm")?.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    alert("Admin signed in successfully!");
+                    showPage("homePage");
+                });
+    
+                document.getElementById("signupAdminForm")?.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    alert("Admin signed up successfully!");
+                    showPage("homePage");
+                });
+    
+                document.getElementById("signinUserForm")?.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    alert("User signed in successfully!");
+                    showPage("homePage");
+                });
+            });
+        </script>
+    </body>
+    </html>    
+    <script src="script.js"></script>
+</body>
+</html>

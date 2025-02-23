@@ -1,0 +1,276 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.back-btn {
+    background-color: #555;
+}
+
+.back-btn:hover {
+    background-color: #333;
+}
+
+/* Pages */
+.page {
+    display: none; /* Hide all pages initially */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page.active {
+    display: block; /* Show only the active page */
+}
+
+/* Centering the Welcome Page content */
+#welcomePage .main {
+    display: flex;
+    flex-direction: column; /* Stack the buttons vertically */
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Take full viewport height */
+    text-align: center;
+}
+
+/* Adjust button spacing */
+#welcomePage .btn {
+    margin: 50px 150px; /* Space between buttons */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6200ea;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.stat-box, .total-box {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.total-box h3 {
+    font-size: 2rem;
+    color: blue;
+}
+
+/* Actions Section */
+.actions {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.action-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Transaction Section */
+.list-tile {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    margin: 1rem 0;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.recent-products {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.product-list {
+    padding: 1rem;
+    background-color: #e0e0e0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #6200ea;
+    color: white;
+    padding: 1rem 0;
+    border-radius: 0 0 8px 8px;
+}
+/* Centering the table */
+.transaction-history-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Styling the table */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+thead th {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+}
+
+tbody td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Align the back button */
+.transaction-history-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.transaction-history-container button:hover {
+    background-color: #003f8a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    thead th,
+    tbody td {
+        padding: 8px;
+    }
+
+    .transaction-history-container button {
+        font-size: 14px;
+    }
+}
+
+.more-container, .signout-container, .user-management-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.more-container h1, .signout-container h1, .user-management-container h1 {
+    margin-bottom: 20px;
+}
+
+.button-group .menu-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80%;
+}
+
+.button-group .menu-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Filter and Download Button Styles */
+.filter-options {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.filter-options label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.download-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
